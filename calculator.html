@@ -1,0 +1,136 @@
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title>Calculator</title>
+	<style type="text/css">
+	body{
+		background-color: #dbdcde;
+	}
+	#calculator {
+		margin: auto;
+		height: 340px;
+		width: 330px;
+		background-color: #f8f8f8;
+	}
+	#result {
+		height: 60px;
+		width: 100%;
+		border-radius:8px;
+		background-color: #ffce27;
+		float: right;
+		text-align: right;
+		font-size: 30px;
+	}
+
+	#table {
+		height: 340px;
+		width: 330px;
+	}
+	.button {
+		height: 100%;
+		width: 100%;
+		border-radius:5px;
+		background-color: #eeeeee;
+	}
+	</style>
+</head>
+<body>
+	<div id = "calculator">
+		<table id = "table">
+			<tr>
+				<td colspan="4" > 
+					<input type = "text" value = "" readonly id = "result">
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="MC" onclick='memory("c")'></td>
+	            <td><input type="button" class="button" value="M+" onclick='memory("+")'></td>
+	            <td><input type="button" class="button" value="M-" onclick='memory("-")'></td>
+	            <td><input type="button" class="button" value="MR" onclick='memory("r")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="C" onclick='displayResult("")'></td>
+				<td><input type="button" class="button" value='<-' onclick='removeKey()'></td>
+				<td><input type="button" class="button" value="/" onclick='addKey("/")'></td>
+				<td><input type="button" class="button" value="x" onclick='addKey("*")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="7" onclick='addKey("7")'></td>
+				<td><input type="button" class="button" value="8" onclick='addKey("8")'></td>
+				<td><input type="button" class="button" value="9" onclick='addKey("9")'></td>
+				<td><input type="button" class="button" value="-" onclick='addKey("-")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="4" onclick='addKey("4")'></td>
+				<td><input type="button" class="button" value="5" onclick='addKey("5")'></td>
+				<td><input type="button" class="button" value="6" onclick='addKey("6")'></td>
+				<td><input type="button" class="button" value="+" onclick='addKey("+")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="1" onclick='addKey("1")'></td>
+				<td><input type="button" class="button" value="2" onclick='addKey("2")'></td>
+				<td><input type="button" class="button" value="3" onclick='addKey("3")'></td>
+				<td rowspan="2"><input type="button" class="button" value="=" onclick='compute()'></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" class="button" value="0" onclick='addKey("0")'></td>
+				<td><input type="button" class="button" value="." onclick='addKey(".")'></td>
+				
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript">
+		var m = 0;
+		var result = "";
+		function memory(act){
+			result = document.getElementById("result").value
+			switch (act) {
+				case "+":
+					m = eval(m + "+" + result);
+					break;
+				case "-":
+					m = eval(m + "-" + result);
+					break;
+				case "r":
+					displayResult(m);
+					break;
+				case "c":
+					m = 0;
+					break;
+			}
+		}
+
+		function addKey(key){
+			document.getElementById("result").value = result;
+			result = document.getElementById("result").value;
+			if(isNaN(key) == true){
+					if(result.substring(result.length - 1, result.length) == key){
+
+					}else{
+						result += key;
+					}
+			}else{
+				result += key;
+			}
+
+			document.getElementById("result").value = result;
+		}
+		function displayResult(result){
+			document.getElementById("result").value = result;
+		}
+		function removeKey(){
+			result = document.getElementById("result").value;
+			res = result.substring(0, result.length-1);
+			document.getElementById("result").value = res;
+		}
+		function compute(key){
+			try {
+				var result = eval(document.getElementById("result").value);
+				displayResult(result);
+			}catch(compute){
+				displayResult("Có lỗi !")
+			}
+		}
+	</script>
+</body>
+</html>

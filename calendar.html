@@ -25,11 +25,19 @@
 		margin-left: 5px;
 		margin-right: 5px;
 		background-color: #da2128;
-		padding-left: 50px;
+		padding-left: 30px;
+		padding-right: 30px;
 		border-radius: 5px;
 	}
+	#headding table {
+		width: 100%;
+	}
+	#headding button{
+		border : none;
+		outline: none;
+	}
 	#title {
-		width: 300px;
+		width: 100%;
 		color: #ffffff;
 		font-size: 40px;
 		text-align: center;
@@ -55,20 +63,18 @@
 	.left {
 		width: 0;
   		height: 0;
-  		border-top: 10px solid transparent;
-		border-right: 10px solid #ffffff;
-		border-bottom: 10px solid transparent;
+  		border-top: 5px solid transparent;
+		border-right: 5px solid #ffffff;
+		border-bottom: 5px solid transparent;
 	}
 	.right {
 		width: 0;
 		height: 0;
-		border-top: 10px solid transparent;
-		border-left: 10px solid #ffffff;
-		border-bottom: 10px solid transparent;
+		border-top: 5px solid transparent;
+		border-left: 5px solid #ffffff;
+		border-bottom: 5px solid transparent;
 	}
-	#headding input{
-		background-color: #da2128
-	}
+	
 	</style>
 </head>
 <body>
@@ -76,9 +82,12 @@
 		<div id = "headding">
 			<table>
 				<tr>
-					<td><input type = "button" class = "left" onclick = "calendar(-1)"></td>
+					<td>
+						<!-- <input type = "button" class = "left" onclick = "calendar(-1)"> -->
+						<button onclick = "calendar(-1)"><img src="left.jpg"></button>
+					</td>
 					<td id = "title"></td>
-					<td><input type = "button" class = "right" value = ">" onclick = "calendar(1)">  </td>
+					<td><button onclick = "calendar(1)"><img src="right.jpg"></button> </td>
 				</tr>
 			</table>
 		</div>
@@ -94,7 +103,6 @@
 	function calendar(i){
 		todayDate.setDate(1);
 		todayDate.setMonth(todayDate.getMonth() + i);
-		console.log(now.getMonth()+ '--' + todayDate.getMonth())
 		display();	
 	}
 	function display(){

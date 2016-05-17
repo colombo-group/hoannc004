@@ -41,6 +41,9 @@
 		border-radius:5px;
 		background-color: #ffffff;
 	}
+	.button:hover {
+		background-color: red;
+	}
 	</style>
 </head>
 <body>
@@ -134,11 +137,14 @@
 		}
 		function compute(){
 			try {
-				result = eval(value1 + operator + value2);
-				document.getElementById("result").value = result;
-				value1 = "";
-				value2 = "";
-				operator = "";
+				if(value1 != "" && operator != "" && value2 != ""){
+					result = eval(value1 + operator + value2);
+					document.getElementById("result").value = result;
+					value1 = "";
+					value2 = "";
+					operator = "";
+				}
+				
 			}catch(compute){
 				document.getElementById("result").value = "Có lỗi !";
 			}

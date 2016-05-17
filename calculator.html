@@ -59,21 +59,21 @@
 			</tr>
 			<tr>
 				<td><input type="button" class="button" value="C" onclick='clearDisplay()'></td>
-				<td><input type="button" class="button" value='<-' onclick='removeKey()'></td>
-				<td><input type="button" class="button" value="/" onclick='addKey("/")'></td>
-				<td><input type="button" class="button" value="x" onclick='addKey("*")'></td>
+				<td><input type="button" class="button" value='+/-' onclick='addKey("+/-")'></td>
+				<td><input type="button" class="button" value="/" onclick='addOperator("/")'></td>
+				<td><input type="button" class="button" value="x" onclick='addOperator("*")'></td>
 			</tr>
 			<tr>
 				<td><input type="button" class="button" value="7" onclick='addKey("7")'></td>
 				<td><input type="button" class="button" value="8" onclick='addKey("8")'></td>
 				<td><input type="button" class="button" value="9" onclick='addKey("9")'></td>
-				<td><input type="button" class="button" value="-" onclick='addKey("-")'></td>
+				<td><input type="button" class="button" value="-" onclick='addOperator("-")'></td>
 			</tr>
 			<tr>
 				<td><input type="button" class="button" value="4" onclick='addKey("4")'></td>
 				<td><input type="button" class="button" value="5" onclick='addKey("5")'></td>
 				<td><input type="button" class="button" value="6" onclick='addKey("6")'></td>
-				<td><input type="button" class="button" value="+" onclick='addKey("+")'></td>
+				<td><input type="button" class="button" value="+" onclick='addOperator("+")'></td>
 			</tr>
 			<tr>
 				<td><input type="button" class="button" value="1" onclick='addKey("1")'></td>
@@ -89,58 +89,84 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+		var value1 = "";
+		var value2 = ""
+		var operator = "";
 		var m = 0;
-		var result = "";
+		var result = 0;
+		window.onload = function(){
+			document.getElementById("result").value = 0;
+			
+		}
+		
+		
+		function addOperator(key){
+			if(value1 != ""){
+				operator = key;	
+			}
+		}
+		function addKey(key){
+			if(operator == ""){
+				if(key == '.'){
+					if(value1.indexOf(key) == -1){
+						value1 += key;
+					}
+				} else if(key == "+/-"){
+					value1 = eval("-1" * value1);
+				}
+				else{
+					value1 += key;
+				}
+				document.getElementById("result").value = value1;
+			}else{
+				if(key == '.'){
+					if(value2.indexOf(key) == -1){
+						value2 += key;
+					}
+				}else if(key == "+/-"){
+					value2 = eval("-1" * value2);
+				}
+				else{
+					value2 += key;
+				}
+				document.getElementById("result").value = value2;
+			}
+		}
+		function compute(){
+			try {
+				result = eval(value1 + operator + value2);
+				document.getElementById("result").value = result;
+				value1 = "";
+				value2 = "";
+				operator = "";
+			}catch(compute){
+				document.getElementById("result").value = "Có lỗi !";
+			}
+		}	
+		function clearDisplay(){
+			result = 0;
+			value1 = "";
+			value2 = "";
+			document.getElementById("result").value = result;
+		}
 		function memory(act){
-			result = document.getElementById("result").value
+			num = document.getElementById("result").value
 			switch (act) {
 				case "+":
-					m = eval(m + "+" + result);
+					m = eval(m + "+" + num);
 					break;
 				case "-":
-					m = eval(m + "-" + result);
+					m = eval(m + "-" + num);
 					break;
 				case "r":
-					displayResult(m);
+					document.getElementById("result").value = m;
 					break;
 				case "c":
 					m = 0;
+					document.getElementById("result").value = 0;
 					break;
 			}
-		}
-
-		function addKey(key){
-			document.getElementById("result").value = result;
-			result = document.getElementById("result").value;
-			if(isNaN(key) == true){
-					if(result.substring(result.length - 1, result.length) == key){
-
-					}else{
-						result += key;
-					}
-			}else{
-				result += key;
-			}
-
-			document.getElementById("result").value = result;
-		}
-		function compute(key){
-			try {
-				result = eval(document.getElementById("result").value);
-				document.getElementById("result").value = result;
-			}catch(compute){
-				displayResult("Có lỗi !")
-			}
-		}
-		function removeKey(){
-			result = document.getElementById("result").value;
-			res = result.substring(0, result.length-1);
-			document.getElementById("result").value = res;
-		}
-		
-		function clearDisplay(){
-			result = "";
-			document.getElementById("result").value = result;
+			value1 = "";
 		}
 	</script>
 </body>

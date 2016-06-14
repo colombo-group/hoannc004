@@ -1,0 +1,26 @@
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title>Calendar</title>
+	<link rel="stylesheet" type="text/css" href="calendar.css">
+</head>
+<body>
+	<div id = "main">
+		<div id = "headding">
+			<table>
+				<tr>
+					<td>
+						<!-- <input type = "button" class = "left" onclick = "calendar(-1)"> -->
+						<button onclick = "calendar(-1)"><img src="left.jpg"></button>
+					</td>
+					<td id = "title"></td>
+					<td><button onclick = "calendar(1)"><img src="right.jpg"></button> </td>
+				</tr>
+			</table>
+		</div>
+		<div id = "show"></div>
+	</div>
+
+<script src="calendar.js"></script>
+</body>
+</html>

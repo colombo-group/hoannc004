@@ -1,0 +1,54 @@
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+<body>
+	<div id = "calculator">
+		<table id = "table">
+			<tr>
+				<td colspan="4" > 
+					<input type = "text" value = "" readonly id = "result">
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="MC" onclick='memory("c")'></td>
+	            <td><input type="button" class="button" value="M+" onclick='memory("+")'></td>
+	            <td><input type="button" class="button" value="M-" onclick='memory("-")'></td>
+	            <td><input type="button" class="button" value="MR" onclick='memory("r")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="C" onclick='clearDisplay()'></td>
+				<td><input type="button" class="button" value='+/-' onclick='addKey("+/-")'></td>
+				<td><input type="button" class="button" value="/" onclick='addOperator("/")'></td>
+				<td><input type="button" class="button" value="x" onclick='addOperator("*")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="7" onclick='addKey("7")'></td>
+				<td><input type="button" class="button" value="8" onclick='addKey("8")'></td>
+				<td><input type="button" class="button" value="9" onclick='addKey("9")'></td>
+				<td><input type="button" class="button" value="-" onclick='addOperator("-")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="4" onclick='addKey("4")'></td>
+				<td><input type="button" class="button" value="5" onclick='addKey("5")'></td>
+				<td><input type="button" class="button" value="6" onclick='addKey("6")'></td>
+				<td><input type="button" class="button" value="+" onclick='addOperator("+")'></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="button" value="1" onclick='addKey("1")'></td>
+				<td><input type="button" class="button" value="2" onclick='addKey("2")'></td>
+				<td><input type="button" class="button" value="3" onclick='addKey("3")'></td>
+				<td rowspan="2"><input type="button" class="button" value="=" onclick='compute()'></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" class="button" value="0" onclick='addKey("0")'></td>
+				<td><input type="button" class="button" value="." onclick='addKey(".")'></td>
+				
+			</tr>
+		</table>
+	</div>
+	<script src="calculator.js"></script>
+</body>
+</html>
